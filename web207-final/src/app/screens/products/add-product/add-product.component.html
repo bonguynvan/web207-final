@@ -23,6 +23,10 @@
       <input type="text" [formControl]="productForm.price" class="form-control">
     </div>
     <div class="form-group">
+      <label for="">Detail</label>
+      <input type="text" [formControl]="productForm.detail" class="form-control">
+    </div>
+    <div class="form-group">
       <label for="">Amount</label>
       <input type="text" [formControl]="productForm.amount" class="form-control">
     </div>
@@ -32,7 +36,7 @@
     </div>
     <div class="text-center">
       <button class="btn btn-success btn-sm" (click)="saveProduct()">Save Changes</button>&nbsp;
-      <a routerLink="{{categoryId}}/products" class="btn btn-danger btn-sm">Cancel</a>
+      <a routerLink="/{{categoryId}}/products" class="btn btn-danger btn-sm">Cancel</a>
     </div>
   </div>
 </div>

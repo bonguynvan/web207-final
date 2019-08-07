@@ -16,7 +16,7 @@ export class EditProductComponent implements OnInit {
               private route: ActivatedRoute) { }
   categoryId: string = this.route.snapshot.paramMap.get('category-id') ;
   productId: string = this.route.snapshot.paramMap.get('id') ;
-  url: string = this.router.url
+  url = `${this.categoryId}/products/${this.productId}`
   productForm = new FormGroup({
     id: new FormControl(this.productId),
     categoryId: new FormControl(this.categoryId),

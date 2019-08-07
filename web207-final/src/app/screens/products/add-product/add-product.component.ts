@@ -14,7 +14,7 @@ export class AddProductComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
   categoryId: string = this.route.snapshot.paramMap.get('category-id') ;
-  url: string = this.router.url ;
+  url = `${this.categoryId}/products` ;
   productForm = {
     name: new FormControl(''),
     image: new FormControl(''),
@@ -36,7 +36,7 @@ export class AddProductComponent implements OnInit {
     } ;
     this.productService.createProduct(this.url, data)
       .subscribe(data => {
-        this.router.navigate([`${this.categoryId}/products`]);
+        this.router.navigate([this.url]);
       });
   }
 
