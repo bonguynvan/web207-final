@@ -1,0 +1,65 @@
+<header>
+  <div class="home-button">
+    <a routerLink="/" class="btn btn-primary">Home</a>
+  </div>
+  <div class="add-new">
+    <a routerLink="{{url}}/add" class="btn btn-primary">Add New Product</a>
+  </div>
+</header>
+<div class="cate-id">
+  Category ID: {{categoryId}}
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let product of productList">
+      <div class="tile">
+        <div class="wrapper">
+          <div class="header">{{product.name}}</div>
+
+          <div class="banner-img">
+            <img [src]="product.image">
+          </div>
+
+          <div class="stats">
+
+            <div>
+              <strong>ID</strong> {{product.id}}
+            </div>
+
+            <div>
+              <strong>PRICE</strong> {{product.price}}
+            </div>
+
+            <div>
+              <strong>DETAIL</strong> {{product.detail}}
+            </div>
+
+          </div>
+
+          <div class="stats">
+
+            <div>
+              <strong>AMOUNT</strong> {{product.amount}}
+            </div>
+
+            <div>
+              <strong>STATUS</strong> {{product.status}}
+            </div>
+
+            <div>
+              <strong>HELLO</strong> {{product.categoryId}}
+            </div>
+
+          </div>
+
+          <div class="footer">
+            <a routerLink="{{url}}/{{product.id}}/edit" class="Cbtn Cbtn-primary">Edit</a>
+            <a href="#" class="Cbtn Cbtn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

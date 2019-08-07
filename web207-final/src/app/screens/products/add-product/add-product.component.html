@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-6 offset-sm-3">
+    <div class="text-center">
+      <h3>Add new Product</h3>
+    </div>
+    <div class="form-group">
+      <label for="">Product Name</label>
+      <input type="text" [formControl]="productForm.name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Image</label><br>
+      <!--        <div *ngIf="!category.value.image">-->
+      <!--          <a href="https://placeholder.com/"><img src=" https://via.placeholder.com/150" alt=""></a>-->
+      <!--        </div>-->
+      <img [src]="productForm.image.value" alt="" width="640px" height="480px" class="img-fluid">
+    </div>
+    <div class="form-group">
+      <label for="">Image Address</label>
+      <input type="text" [formControl]="productForm.image" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Price</label>
+      <input type="text" [formControl]="productForm.price" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Amount</label>
+      <input type="text" [formControl]="productForm.amount" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="">Status</label>
+      <input type="text" [formControl]="productForm.status" class="form-control">
+    </div>
+    <div class="text-center">
+      <button class="btn btn-success btn-sm" (click)="saveProduct()">Save Changes</button>&nbsp;
+      <a routerLink="{{categoryId}}/products" class="btn btn-danger btn-sm">Cancel</a>
+    </div>
+  </div>
+</div>
+
+<!--<a href="https://placeholder.com/"><img src=" https://via.placeholder.com/150" alt=""></a>-->

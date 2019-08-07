@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+header{
+  background-color: #a1fff7;
+  z-index: 999;
+}
+
+header.sticky{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1ae4ff;
+  transform: translateY(-200%);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+body.scroll header.sticky {
+  transform: translateY(0);
+}
