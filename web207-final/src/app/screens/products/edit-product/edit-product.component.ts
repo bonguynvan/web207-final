@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../../../services/product.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
@@ -20,27 +20,44 @@ export class EditProductComponent implements OnInit {
   productForm = new FormGroup({
     id: new FormControl(this.productId),
     categoryId: new FormControl(this.categoryId),
-    name: new FormControl(''),
-    image: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl('',
+      Validators.required),
+    image: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g)
+    ]),
+    price: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/(\d+\.\d{1,2})/g)]),
     detail: new FormControl(''),
-    amount: new FormControl(''),
-    status: new FormControl('')
-  }) ;
+    amount: new FormControl('',
+     [
+       Validators.required,
+       Validators.pattern(/^[\d]+[\.][\d]{2}$/g)]),
+    status: new FormControl('',
+      Validators.required)
+  })
+  get name() {return this.productForm.get('name'); }
+  get image() {return this.productForm.get('image') ; }
+  get price() {return this.productForm.get('price') ; }
+  get amount() {return this.productForm.get('amount') ; }
+  get status() {return this.productForm.get('status') ; }
+
   ngOnInit() {
     this.getProduct() ;
   }
   getProduct() {
     this.productService.getProduct(this.url).subscribe(data => {
-      this.productForm = new FormGroup({
+      this.productForm.setValue({
         id: new FormControl(this.productId),
         categoryId: new FormControl(this.categoryId),
-        name: new FormControl(data.name),
-        image: new FormControl(data.image),
-        price: new FormControl(data.price),
-        detail: new FormControl(data.detail),
-        amount: new FormControl(data.amount),
-        status: new FormControl(data.status)
+        name: data.name,
+        image: data.image,
+        price: data.price,
+        detail: data.detail,
+        amount: data.amount,
+        status: data.status
       }) ;
     }) ;
   }

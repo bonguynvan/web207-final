@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../../services/category.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../../services/product.service';
@@ -16,17 +16,28 @@ export class AddProductComponent implements OnInit {
   categoryId: string = this.route.snapshot.paramMap.get('category-id') ;
   url = `${this.categoryId}/products` ;
   productForm = {
-    name: new FormControl(''),
-    image: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl('',
+      Validators.required),
+    image: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g)
+    ]),
+    price: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/(\d+\.\d{1,2})/g)]),
     detail: new FormControl(''),
-    amount: new FormControl(''),
-    status: new FormControl('')
-  } ;
+    amount: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^[\d]+[\.][\d]{2}$/g)]),
+    status: new FormControl('',
+      Validators.required)
+  }
   ngOnInit() {
   }
   saveProduct() {
-    let data = {
+    let newProduct = {
       name: this.productForm.name.value,
       image: this.productForm.image.value,
       price: this.productForm.price.value,
@@ -34,7 +45,7 @@ export class AddProductComponent implements OnInit {
       amount: this.productForm.amount.value,
       status: this.productForm.status.value
     } ;
-    this.productService.createProduct(this.url, data)
+    this.productService.createProduct(this.url, newProduct)
       .subscribe(data => {
         this.router.navigate([this.url]);
       });

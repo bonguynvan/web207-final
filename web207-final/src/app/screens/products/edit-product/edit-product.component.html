@@ -1,48 +1,86 @@
+
+<!--add product-->
 <form [formGroup] = productForm>
-  <div class="row">
-    <div class="col-6 offset-sm-3">
+<div class="col-lg-6 offset-3">
+  <div class="card">
+    <div class="card-header">
+      <strong>Edit Product</strong>
+      <small> Form</small>
+    </div>
+    <div class="card-body card-block">
+      <div class="form-group">
+        <label for="">ID Category: {{this.categoryId}}</label>
+      </div>
+      <div class="form-group">
+        <label for="">ID Product: {{this.productId}}</label>
+      </div>
+      <div class="form-group">
+        <label for="name" class=" form-control-label">Name</label>
+        <input type="text" id="name" placeholder="Enter your product name" class="form-control" formControlName="name">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <div *ngIf="name.errors.required">Name is required</div>
+          <div *ngIf="name.errors.minlength">Name must be at least 4 characters long</div>
+          <div *ngIf="name.errors.maxlength">Name must be at most 20 characters long</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imgAddress" class=" form-control-label">Image Address</label>
+        <input type="text" id="imgAddress" placeholder="http://example.com/example.png" class="form-control" formControlName="image">
+        <div *ngIf="image.invalid && (image.dirty || image.touched)" class="alert alert-danger">
+          <div *ngIf="image.errors.required">Image url is required</div>
+          <div *ngIf="image.errors.pattern">Invalid image url</div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="">Image</label><br>
+            <img *ngIf="!image.value" src="https://via.placeholder.com/400x400.png?text=Made+by+Bonguyen%20" alt="">
+            <img *ngIf="image.value" [src]="image.value" alt=""
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400.png?text=Your+image+not+found%20'" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-7">
+          <div class="form-group">
+            <label for="price" class=" form-control-label">Price</label>
+            <input type="text" id="price" placeholder="Enter product price" class="form-control"  formControlName="price">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+              <div *ngIf="price.errors.required">Price is required</div>
+              <div *ngIf="price.errors.pattern">Invalid price</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="form-group">
+            <label for="amount" class=" form-control-label">Amount</label>
+            <input type="text" id="amount" placeholder="Enter amount" class="form-control"  formControlName="amount">
+            <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert alert-danger">
+              <div *ngIf="amount.errors.required">Amount is required</div>
+              <div *ngIf="amount.errors.pattern">Invalid amount</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="detail" class=" form-control-label">Detail</label>
+        <input type="text" id="detail" placeholder="Product detail" class="form-control"  formControlName="detail">
+      </div>
+      <div class="form-group">
+        <label for="status" class=" form-control-label">Status</label>
+        <input type="text" id="status" placeholder="Product status" class="form-control"  formControlName="status">
+        <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-danger">
+          <div *ngIf="status.errors.required">Status is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
       <div class="text-center">
-        <h3>Edit Product</h3>
-      </div>
-      <div class="form-group">
-        <label for="">ID Category: {{productForm.value.categoryId}}</label>
-      </div>
-      <div class="form-group">
-        <label for="">ID Product: {{productForm.value.id}}</label>
-      </div>
-      <div class="form-group">
-        <label for="">Product Name</label>
-        <input type="text" formControlName="name" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="">Image</label><br>
-        <!--        <div *ngIf="!category.value.image">-->
-        <!--          <a href="https://placeholder.com/"><img src=" https://via.placeholder.com/150" alt=""></a>-->
-        <!--        </div>-->
-        <img [src]="productForm.value.image" alt="" width="640px" height="480px" class="img-fluid">
-      </div>
-      <div class="form-group">
-        <label for="">Image Address</label>
-        <input type="text" formControlName="image" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="">Price</label>
-        <input type="text" formControlName="price" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="">Amount</label>
-        <input type="text" formControlName="amount" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="">Status</label>
-        <input type="text" formControlName="status" class="form-control">
-      </div>
-      <div class="text-center">
-        <button class="btn btn-success btn-sm" (click)="updateProduct()">Save Changes</button>&nbsp;
+        <button [disabled]="!(productForm.valid)" class="btn btn-success btn-sm" (click)="updateProduct()">Save Changes</button>&nbsp;
         <a routerLink="/{{categoryId}}/products" class="btn btn-danger btn-sm">Cancel</a>
       </div>
     </div>
   </div>
+</div>
 </form>
-{{productForm.value}}
-

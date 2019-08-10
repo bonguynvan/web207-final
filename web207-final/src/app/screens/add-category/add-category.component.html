@@ -1,32 +1,48 @@
-<div class="row">
-  <div class="col-6 offset-sm-3">
-    <div class="text-center">
-      <h3>Add new Category</h3>
+<div class="col-lg-6 offset-3">
+  <div class="card">
+    <div class="card-header">
+      <strong>Add Category</strong>
+      <small> Form</small>
     </div>
-    <div class="form-group">
-      <label for="">Name</label>
-      <input type="text" [formControl]="categoryForm.name"  class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="">Image</label><br>
-      <div *ngIf="!categoryForm.image.value">
-        <a href="https://placeholder.com/"><img src=" https://via.placeholder.com/150" alt=""></a>
+    <div class="card-body card-block">
+      <div class="form-group">
+        <label for="name" class=" form-control-label">Name<span class="text-danger">*</span></label>
+        <input type="text" id="name" placeholder="Enter your category name" class="form-control" [formControl]="categoryForm.name">
+        <div *ngIf="categoryForm.name.invalid && (categoryForm.name.dirty || categoryForm.name.touched)" class="alert alert-danger">
+          <div *ngIf="categoryForm.name.errors.required">Name is required</div>
+          <div *ngIf="categoryForm.name.errors.minlength">Name must be at least 4 characters long</div>
+          <div *ngIf="categoryForm.name.errors.maxlength">Name must be at most 20 characters long</div>
+        </div>
       </div>
-      <img [src]="categoryForm.image.value" alt="" width="150px" height="150px" class="img-fluid">
+      <div class="form-group">
+        <label for="imgAddress" class=" form-control-label">Image Address<span class="text-danger">*</span></label>
+        <input type="text" id="imgAddress" placeholder="http://example.com/example.png" class="form-control" [formControl]="categoryForm.image">
+        <div *ngIf="categoryForm.image.invalid && (categoryForm.image.dirty || categoryForm.image.touched)" class="alert alert-danger">
+          <div *ngIf="categoryForm.image.errors.required">Image url is required</div>
+          <div *ngIf="categoryForm.image.errors.pattern">Invalid image url</div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Image</label><br>
+            <img *ngIf="!categoryForm.image.value || categoryForm.image.invalid" src="https://via.placeholder.com/400x400.png?text=Made+by+Bonguyen%20" alt="">
+            <img *ngIf="categoryForm.image.value && categoryForm.image.valid" [src]="categoryForm.image.value" alt=""
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400.png?text=Your+image+not+found%20'" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status" class=" form-control-label">Address</label>
+        <input type="text" id="status" placeholder="Category address" class="form-control" >
+      </div>
     </div>
-    <div class="form-group">
-      <label for="">Link Image</label>
-      <input type="text" [formControl]="categoryForm.image" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="">Address</label>
-      <input type="text" [formControl]="categoryForm.address" class="form-control">
-    </div>
-    <div class="text-center">
-      <button class="btn btn-success btn-sm" (click)="saveCategory()">Save</button>&nbsp;
-      <a routerLink="/" class="btn btn-danger btn-sm">Cancel</a>
+    <div class="card-footer">
+      <div class="text-center">
+        <button [disabled]="!(categoryForm.name.valid && categoryForm.image.valid) " class="btn btn-success btn-sm" (click)="saveCategory()" >Save Changes</button>&nbsp;
+        <a routerLink="/" class="btn btn-danger btn-sm">Cancel</a>
+      </div>
     </div>
   </div>
 </div>
 
-<!--<a href="https://placeholder.com/"><img src=" https://via.placeholder.com/150" alt=""></a>-->
