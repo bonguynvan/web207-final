@@ -13,18 +13,15 @@ export class HomeComponent implements OnInit {
   constructor(private cateService: CategoryService,
               private router: Router) {
     $(document).ready(() => {
-      let $header = $('header');
-      let $sticky = $header.before($header.clone().addClass('sticky'));
-
+      const $header = $('header');
+      const $sticky = $header.before($header.clone().addClass('sticky'));
       $(window).on('scroll', () => {
-        let scrollFromTop = $(window).scrollTop();
+        const scrollFromTop = $(window).scrollTop();
         $('body').toggleClass('scroll', (scrollFromTop > 50));
       });
-    }) ;
+    });
   }
-
   categories: any[];
-
   ngOnInit() {
     this.displayCategoriesList();
   }
@@ -34,9 +31,13 @@ export class HomeComponent implements OnInit {
   }
 
   removeCategory(category) {
-    this.cateService.removeCategory(category.id)
-      .subscribe((data => {
-        this.categories = this.categories.filter(item => item.id !== category.id);
-      }));
+    const conf = confirm(`Are you sure to delete ${category.name} ?`);
+    if (conf) {
+      this.cateService.removeCategory(category.id)
+        .subscribe((data => {
+          this.categories = this.categories.filter(item => item.id !== category.id);
+        }));
+    }
   }
+
 }

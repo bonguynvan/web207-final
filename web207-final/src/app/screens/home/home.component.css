@@ -2,7 +2,7 @@
 ---------------------------------------------------------------------- */
 * { margin: 0px; padding: 0px; }
 body {
-  background: #8ceff5;
+  background: #d0d0d0;
   font:14px "Open Sans", sans-serif;
   text-align:center;
 }
@@ -36,8 +36,16 @@ body {
   font-weight:600;
   border-radius: 0 0 5px 5px;
 }
-.stats div{
+.stats div {
   border-right:1px solid #babec1;
+  float:left;
+  text-align:center
+}
+.stats div:nth-of-type(1){
+  border-left:1px solid #babec1;
+}
+
+.img-avatar {
   float:left;
   text-align:center
 }
@@ -61,7 +69,7 @@ body {
   text-align: center;
 }
 header{
-  background-color: #a1fff7;
+  background-color: #e5e5e5;
   padding: 20px;
 }
 .btn-lg-custom{
@@ -69,3 +77,37 @@ header{
   /*margin-left: 20px;*/
   margin-top: 20px;
 }
+.btn-add-custom{
+  padding: 5px ;
+  background: #585b5e;
+  color: #ebeff2;
+  font-family: 'Arial'!important;
+}
+.modal-center-custom {
+  position: absolute;
+  left: 40%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+}
+.modal-header, .modal-content,.modal-footer{
+  padding: 5px;
+}
+
+.modal-body {
+  padding: 10px;
+  line-height: 18px;
+}
+.card-header, .card-footer {
+  padding: 10px;
+}
+.img-thumbnail-custom {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 120px; /* Set a small width */
+  height: 80px;
+}
+.img-thumbnail-custom:hover{
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+

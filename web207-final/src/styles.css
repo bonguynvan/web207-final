@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 header{
-  background-color: #a1fff7;
+  background-color: #d0d0d0;
   z-index: 999;
 }
 
@@ -9,7 +9,7 @@ header.sticky{
   top: 0;
   left: 0;
   right: 0;
-  background: #1ae4ff;
+  background: #d0d0d0;
   transform: translateY(-200%);
   transition: 0.3s;
   z-index: 999;

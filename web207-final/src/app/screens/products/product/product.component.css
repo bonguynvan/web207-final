@@ -15,6 +15,7 @@ body {
 .product {
   padding: 5px;
   margin: 5px;
+
 }
 
 .tile{
@@ -126,6 +127,12 @@ div.footer a.Cbtn-update:hover{
   float: left;
 }
 header{
-  background-color: #a1fff7;
+  background-color: #e5e5e5;
   padding: 20px;
+}
+.btn-add-custom{
+  padding: 6px ;
+  background: #585b5e;
+  color: #ebeff2;
+  font-family: 'Arial'!important;
 }

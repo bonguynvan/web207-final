@@ -1,13 +1,13 @@
 <header>
   <div class="home-button">
-    <a routerLink="/" class="btn btn-primary">Home</a>
+    <a routerLink="/" class="btn btn btn-add-custom">Home</a>
   </div>
   <div class="add-new">
-    <a routerLink="{{url}}/add" class="btn btn-primary">Add New Product</a>
+    <a routerLink="{{url}}/add" class="btn btn btn-add-custom">Add New Product</a>
   </div>
 </header>
 <div class="cate-id">
-  Category ID: {{categoryId}}
+  Home > {{this.categoryName}}
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -47,7 +47,7 @@
             </div>
 
             <div>
-              <strong>HELLO</strong> {{product.categoryId}}
+              <strong>CATEGORYID</strong> {{product.categoryId}}
             </div>
 
           </div>
